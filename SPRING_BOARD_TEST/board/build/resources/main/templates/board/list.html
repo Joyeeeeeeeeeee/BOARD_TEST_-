@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 목록</title>
+</head>
+<body>
+    <h1>게시판</h1>
+    <form action="/board/read" method="get">
+        <a href="/board/insert">글 쓰기</a>
+        <table border="1">
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+                <th>수정일</th>
+                <th>조회수</th>
+            </tr>
+            <tr>
+                <th:block th:if="${boardList.isEmpty()}">
+                조회된 게시글이 없습니다.
+                </th:block>
+            </tr>
+            <th:block th:each="board:${boardList}">
+                <tr>
+                    <td><span th:text="${board.no}"></span></td>
+                
+                    <td><a th:href="|/board/read?no=${board.no}|" th:text="${board.title}"></a></td>
+                
+                    <td><span th:text="${board.writer}"></span></td>
+               
+                    <td><span th:text="${board.regDate}"></span></td>
+                
+                    <td><span th:text="${board.updDate}"></span></td>
+               
+                    <td><span th:text="${board.views}"></span></td>
+                </tr>
+
+            </th:block>
+        </table>
+    </form>
+</body>
+</html>

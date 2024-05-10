@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성</title>
+</head>
+<body>
+    <h1>글 작성</h1>
+    <form action="/board/insert" method="post">
+    <table>
+        <tr>
+            <td>제목</td>
+            <td><input type="text" name="title" id="title"></td>
+        </tr>
+        <tr>
+            <td>작성자</td>
+            <td><input type="text" name="writer" id="writer"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td><textarea name="content" id="content" cols="60" rows="8"></textarea></td>
+        </tr>
+    </table>
+    <input type="submit" value="글 작성">
+    <button type="button" onclick="list()">목록</button>
+    </form>
+
+    <script>
+        function list(){
+            const check = confirm("게시글 목록으로 돌아가시겠습니까? 작성하신 글은 사라집니다.")
+            if(check) {
+                location.href='/board/list'
+            }
+        }
+    </script>
+</body>
+</html>

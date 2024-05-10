@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 수정</title>
+</head>
+<body>
+    <h1>게시글 수정</h1>
+    <form id="form" action="/board/update" method="post">
+        <input type="hidden" name="no" id="no" th:value="${board.no}">
+        <table>
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="title" th:value="${board.title}"></td>
+            </tr>
+            
+            <tr>
+                <td>작성자</td>
+                <td><input type="text" name="writer" th:value="${board.writer}"></td>
+            </tr>
+
+            <tr>
+                <td>내용</td>
+                <td><textarea name="content" id="content" cols="60" rows="8" th:text="${board.content}"></textarea></td>
+            </tr>
+        </table>
+        <input type="submit" value="수정">
+        <button type="button" onclick="list()">목록</button>
+        <button type="button" onclick="del()">삭제</button>
+    </form>
+
+    <script>
+        const no = "[[${board.no}]]"
+        function list(){
+            const check = confirm("게시글 목록으로 돌아가시겠습니까? 작성하신 글은 사라집니다.")
+            if(check) {
+                location.href='/board/list'
+            }
+        }
+
+        function del(){
+            const check = confirm("이 게시글을 삭제하시겠습니까?")
+            if(check){
+                form.method="post"
+                form.action="/board/delete"
+                form.submit()
+            }
+        }
+    </script>
+</body>
+</html>
